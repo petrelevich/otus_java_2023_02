@@ -4,7 +4,7 @@ include ("L01-gradle")
 include ("L02-gradle2")
 include ("L02-gradle2-libApi")
 include ("L02-gradle2-libApiUse")
-
+include ("L03-qa")
 
 
 
