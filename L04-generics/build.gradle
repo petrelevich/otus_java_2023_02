@@ -23,5 +23,7 @@ test {
 tasks.withType(JavaCompile) {
     options.with {
         encoding = 'UTF-8'
+        compilerArgs.clear()
+        compilerArgs.addAll(['-Xlint:all'])
     }
 }
