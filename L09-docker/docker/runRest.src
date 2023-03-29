@@ -4,7 +4,7 @@ docker stats
 docker run --rm --name rest-service \
 -p 8080:8080 \
 --network="host" \
-registry.gitlab.com/petrelevich/dockerregistry/rest-hello:0.0.0-8-main
+registry.gitlab.com/petrelevich/dockerregistry/rest-hello:1.0.0
 
 --------------------------
 docker run --rm --name rest-service \
@@ -13,7 +13,7 @@ docker run --rm --name rest-service \
 -p 8080:8080 \
 --network="host" \
 -e JAVA_TOOL_OPTIONS="-Xms350m -Xmx350m -XX:+UseSerialGC" \
-registry.gitlab.com/petrelevich/dockerregistry/rest-hello:0.0.0-8-main
+registry.gitlab.com/petrelevich/dockerregistry/rest-hello:1.0.0
 
 --------------------------
 
@@ -27,7 +27,7 @@ docker run --rm --name rest-service \
 -p 8080:8080 \
 --network="host" \
 -e JAVA_TOOL_OPTIONS="-Xms350m -Xmx350m -XX:+UseSerialGC" \
-registry.gitlab.com/petrelevich/dockerregistry/rest-hello:0.0.0-8-main
+registry.gitlab.com/petrelevich/dockerregistry/rest-hello:1.0.0
 
 --------------------------
 docker run --rm --name rest-service \
@@ -36,5 +36,5 @@ docker run --rm --name rest-service \
 -p 8080:8080 \
 --network="host" \
 -e JAVA_TOOL_OPTIONS="-XX:InitialRAMPercentage=80 -XX:MaxRAMPercentage=80 -XX:+UseSerialGC" \
-registry.gitlab.com/petrelevich/dockerregistry/rest-hello:0.0.0-8-main
+registry.gitlab.com/petrelevich/dockerregistry/rest-hello:1.0.0
 
