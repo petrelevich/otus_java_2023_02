@@ -14,6 +14,7 @@ include("L08-gc:homework")
 
 include("L09-docker")
 include ("L10-byteCodes")
+include ("L11-java8")
 
 pluginManagement {
     val jgitver: String by settings
