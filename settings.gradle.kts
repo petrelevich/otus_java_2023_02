@@ -18,6 +18,8 @@ include ("L11-java8")
 
 include ("L12-solid")
 include ("L13-creationalPatterns")
+include ("L14-behavioralPatterns")
+
 
 pluginManagement {
     val jgitver: String by settings
