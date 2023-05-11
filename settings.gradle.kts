@@ -27,6 +27,8 @@ include("L16-io:homework")
 
 include ("L17-nio-logging")
 
+include ("L18-rdbms")
+
 pluginManagement {
     val jgitver: String by settings
     val dependencyManagement: String by settings
