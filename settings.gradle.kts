@@ -25,9 +25,12 @@ include("L15-structuralPatterns:homework")
 include("L16-io:demo")
 include("L16-io:homework")
 
-include ("L17-nio-logging")
+include("L17-nio-logging")
 
-include ("L18-rdbms")
+include("L18-rdbms")
+
+include("L19-jdbc:demo")
+include("L19-jdbc:homework")
 
 pluginManagement {
     val jgitver: String by settings
