@@ -32,6 +32,8 @@ include("L18-rdbms")
 include("L19-jdbc:demo")
 include("L19-jdbc:homework")
 
+include ("L20-hibernate")
+
 pluginManagement {
     val jgitver: String by settings
     val dependencyManagement: String by settings
