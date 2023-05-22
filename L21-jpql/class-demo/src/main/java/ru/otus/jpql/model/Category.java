@@ -1,4 +1,4 @@
-package ru.otus.mainops.model;
+package ru.otus.jpql.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

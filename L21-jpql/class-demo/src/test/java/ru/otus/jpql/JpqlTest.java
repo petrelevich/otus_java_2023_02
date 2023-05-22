@@ -9,7 +9,7 @@ import ru.otus.jpql.model.Avatar;
 import ru.otus.jpql.model.Course;
 import ru.otus.jpql.model.EMail;
 import ru.otus.jpql.model.OtusStudent;
-import ru.otus.mainops.model.Category;
+import ru.otus.jpql.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;
