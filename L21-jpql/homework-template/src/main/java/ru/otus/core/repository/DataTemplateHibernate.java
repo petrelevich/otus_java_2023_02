@@ -36,12 +36,13 @@ public class DataTemplateHibernate<T> implements DataTemplate<T> {
     }
 
     @Override
-    public void insert(Session session, T object) {
+    public T insert(Session session, T object) {
         session.persist(object);
+        return object;
     }
 
     @Override
-    public void update(Session session, T object) {
-        session.merge(object);
+    public T update(Session session, T object) {
+        return session.merge(object);
     }
 }
