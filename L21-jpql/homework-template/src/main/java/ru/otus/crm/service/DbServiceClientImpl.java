@@ -6,6 +6,7 @@ import ru.otus.core.repository.DataTemplate;
 import ru.otus.crm.model.Client;
 import ru.otus.core.sessionmanager.TransactionManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,7 +51,7 @@ public class DbServiceClientImpl implements DBServiceClient {
         return transactionManager.doInReadOnlyTransaction(session -> {
             var clientList = clientDataTemplate.findAll(session);
             log.info("clientList:{}", clientList);
-            return clientList.stream().collect(Collectors.toList());
+            return clientList;
        });
     }
 }
