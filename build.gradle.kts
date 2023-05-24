@@ -34,6 +34,7 @@ allprojects {
     val jmh: String by project
     val asm: String by project
     val glassfishJson: String by project
+    val ehcache: String by project
 
     apply(plugin = "io.spring.dependency-management")
     dependencyManagement {
@@ -47,7 +48,8 @@ allprojects {
             dependency("org.openjdk.jmh:jmh-core:$jmh")
             dependency("org.openjdk.jmh:jmh-generator-annprocess:$jmh")
             dependency("org.ow2.asm:asm-commons:$asm")
-            dependency("org.glassfish:jakarta.json:${glassfishJson}")
+            dependency("org.glassfish:jakarta.json:$glassfishJson")
+            dependency("org.ehcache:ehcache:$ehcache")
         }
     }
     configurations.all {
