@@ -44,6 +44,8 @@ include ("L23-noSQL:neo4j-demo")
 include ("L23-noSQL:redis-demo")
 include ("L23-noSQL:cassandra-demo")
 
+include ("L24-webServer")
+
 pluginManagement {
     val jgitver: String by settings
     val dependencyManagement: String by settings
