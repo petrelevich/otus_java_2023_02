@@ -51,6 +51,10 @@ include ("L25-di:homework-template")
 
 include ("L26-springBootMvc")
 
+include ("L27-websocket:websocket")
+include ("L27-websocket:messager")
+include ("L27-websocket:messager-starter")
+include ("L27-websocket:application")
 
 pluginManagement {
     val jgitver: String by settings
