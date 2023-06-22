@@ -54,6 +54,7 @@ allprojects {
     val stomp: String by project
     val bootstrap: String by project
     val springDocOpenapiUi: String by project
+    val jsr305: String by project
 
     apply(plugin = "io.spring.dependency-management")
     dependencyManagement {
@@ -95,6 +96,7 @@ allprojects {
             dependency("org.webjars:stomp-websocket:$stomp")
             dependency("org.webjars:bootstrap:$bootstrap")
             dependency("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springDocOpenapiUi")
+            dependency("com.google.code.findbugs:jsr305:$jsr305")
         }
     }
     configurations.all {
