@@ -36,10 +36,10 @@ class FixMe4WithConcurrentHashMapUnitTest {
                 latch.countDown();
                 latch.await();
                 for (int i = 0; i < ITERATIONS_COUNT; i++) {
-                    out.println("starting adding email " + i);
+                    log.info("starting adding email {}", i);
                     String s = randomAlphabetic(10) + "@gmail.com";
                     map.put(s, s);
-                    out.println("finishing adding email " + i);
+                    log.info("finishing adding email {}", i);
                 }
             } catch (Exception ex) {
                 log.error(ex.getMessage(), ex);
@@ -50,9 +50,9 @@ class FixMe4WithConcurrentHashMapUnitTest {
                 latch.countDown();
                 latch.await();
                 for (int i = 0; i < ITERATIONS_COUNT; i++) {
-                    out.println("starting read iteration " + i);
+                    log.info("starting read iteration {}", i);
                     map.forEach((k, v) -> out.println(k));
-                    out.println("finishing read iteration " + i);
+                    log.info("finishing read iteration {}", i);
                 }
             } catch (Exception ex) {
                 exceptions.add(ex);

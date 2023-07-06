@@ -43,9 +43,9 @@ class FixMe1WithMonitorUnitTest {
                 latch.countDown();
                 latch.await();
                 for (int i = 0; i < ITERATIONS_COUNT; i++) {
-                    out.println("starting adding email " + i);
+                    log.info("starting adding email {}", i);
                     list.add(randomAlphabetic(10) + "@gmail.com");
-                    out.println("finishing adding email " + i);
+                    log.info("finishing adding email {}", i);
                 }
             } catch (Exception ex) {
                 log.error(ex.getMessage(), ex);
@@ -56,9 +56,9 @@ class FixMe1WithMonitorUnitTest {
                 latch.countDown();
                 latch.await();
                 for (int i = 0; i < ITERATIONS_COUNT; i++) {
-                    out.println("starting read iteration " + i);
+                    log.info("starting read iteration {}", i);
                     list.forEach(out::println);
-                    out.println("finishing read iteration " + i);
+                    log.info("finishing read iteration {}", i);
                 }
             } catch (Exception ex) {
                 exceptions.add(ex);
