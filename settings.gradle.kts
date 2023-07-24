@@ -73,6 +73,7 @@ include ("L34-rabbitMQ:mainService")
 
 include ("L34-executors")
 include ("L35-NIO")
+include ("L36-netty")
 
 pluginManagement {
     val jgitver: String by settings
