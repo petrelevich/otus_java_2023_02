@@ -30,6 +30,7 @@ allprojects {
 
     val testcontainersBom: String by project
     val protobufBom: String by project
+    val jacksonBom: String by project
     val guava: String by project
     val jmh: String by project
     val asm: String by project
@@ -56,6 +57,8 @@ allprojects {
     val springDocOpenapiUi: String by project
     val jsr305: String by project
     val grpc: String by project
+    val wiremock: String by project
+    val r2dbcPostgresql: String by project
 
     apply(plugin = "io.spring.dependency-management")
     dependencyManagement {
@@ -64,6 +67,7 @@ allprojects {
                 mavenBom(BOM_COORDINATES)
                 mavenBom("org.testcontainers:testcontainers-bom:$testcontainersBom")
                 mavenBom("com.google.protobuf:protobuf-bom:$protobufBom")
+                mavenBom("com.fasterxml.jackson:jackson-bom:$jacksonBom")
             }
             dependency("com.google.guava:guava:$guava")
             dependency("org.openjdk.jmh:jmh-core:$jmh")
@@ -102,6 +106,9 @@ allprojects {
 			dependency("io.grpc:grpc-netty:$grpc")
             dependency("io.grpc:grpc-protobuf:$grpc")
             dependency("io.grpc:grpc-stub:$grpc")
+            dependency("com.github.tomakehurst:wiremock:$wiremock")
+            dependency("io.r2dbc:r2dbc-postgresql:$r2dbcPostgresql")
+
         }
     }
     configurations.all {
@@ -116,6 +123,7 @@ allprojects {
             force("org.codehaus.jettison:jettison:1.1")
             force("net.java.dev.jna:jna:5.8.0")
             force("com.google.errorprone:error_prone_annotations:2.7.1")
+            force("org.ow2.asm:asm:9.4")
         }
     }
 }
