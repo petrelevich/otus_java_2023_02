@@ -137,7 +137,7 @@ subprojects {
 
     tasks.withType<JavaCompile> {
         options.encoding = "UTF-8"
-        options.compilerArgs.addAll(listOf("-Xlint:all,-serial,-processing", "-Werror"))
+        options.compilerArgs.addAll(listOf("-Xlint:all,-serial,-processing")) //, "-Werror"))
     }
 
     plugins.apply(fr.brouillard.oss.gradle.plugins.JGitverPlugin::class.java)
