@@ -81,6 +81,9 @@ include ("L37-webflux:client")
 include ("L37-webflux-chat:client-service")
 include ("L37-webflux-chat:datastore-service")
 
+include ("L38-kafka:consumer")
+include ("L38-kafka:producer")
+
 pluginManagement {
     val jgitver: String by settings
     val dependencyManagement: String by settings
