@@ -46,4 +46,11 @@ public class DbServiceManagerImpl implements DBServiceManager {
         log.info("managerList:{}", managerList);
         return managerList;
     }
+
+    @Override
+    public List<Manager> findByLabel(String label) {
+        var managerList = managerRepository.findByLabel(label);
+        log.info("managerList:{}", managerList);
+        return managerList;
+    }
 }

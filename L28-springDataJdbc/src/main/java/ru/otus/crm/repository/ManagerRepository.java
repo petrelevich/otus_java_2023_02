@@ -28,4 +28,6 @@ public interface ManagerRepository extends ListCrudRepository<Manager, String> {
             resultSetExtractorClass = ManagerResultSetExtractorClass.class)
 */
     List<Manager> findAll();
+
+    List<Manager> findByLabel(String label);
 }

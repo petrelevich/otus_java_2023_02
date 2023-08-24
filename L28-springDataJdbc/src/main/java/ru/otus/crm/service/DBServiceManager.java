@@ -12,4 +12,6 @@ public interface DBServiceManager {
     Optional<Manager> getManager(String no);
 
     List<Manager> findAll();
+
+    List<Manager> findByLabel(String label);
 }
