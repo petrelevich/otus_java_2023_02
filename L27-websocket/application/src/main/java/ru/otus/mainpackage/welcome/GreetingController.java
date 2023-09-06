@@ -22,7 +22,7 @@ public class GreetingController {
     public GreetingController(GreetingService greetingService, AppConfigForConfigProps props,
                               @Qualifier("messageConfig") AppConfigForBean appConfigForBean) {
         this.greetingService = greetingService;
-        logger.info("ATTENTION! props.getParamName(): {}", props.getParamName());
+        logger.info("ATTENTION! props.getParamName(): {}, defaultVal:{}", props.getParamName(), props.getDefaultValue());
         logger.info("ATTENTION! applicationConfig.getMessage(): {}", appConfigForBean.paramName());
     }
 
