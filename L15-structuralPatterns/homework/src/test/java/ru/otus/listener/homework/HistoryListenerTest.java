@@ -7,14 +7,13 @@ import ru.otus.model.Message;
 import ru.otus.model.ObjectForMessage;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class HistoryListenerTest {
 
     @Test
-    @Disabled //надо удалить
+     //надо удалить
     void listenerTest() {
         //given
         var historyListener = new HistoryListener();
@@ -26,19 +25,19 @@ class HistoryListenerTest {
         field13Data.add(data);
         field13.setData(field13Data);
 
-        var message = new Message.Builder(id)
+        var message = new Message.Builder(id, field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13)
                 .field10("field10")
-//TODO: раскоментировать       .field13(field13)
+               .field13(field13)
                 .build();
 
         //when
         historyListener.onUpdated(message);
-//TODO: раскоментировать        message.getField13().setData(new ArrayList<>()); //меняем исходное сообщение
-//TODO: раскоментировать        field13Data.clear(); //меняем исходный список
+       message.getField13().setData(new ArrayList<>()); //меняем исходное сообщение
+        field13Data.clear(); //меняем исходный список
 
         //then
         var messageFromHistory = historyListener.findMessageById(id);
         assertThat(messageFromHistory).isPresent();
-//TODO: раскоментировать        assertThat(messageFromHistory.get().getField13().getData()).containsExactly(data);
+       assertThat(messageFromHistory.get().getField13().getData()).containsExactly(data);
     }
 }
