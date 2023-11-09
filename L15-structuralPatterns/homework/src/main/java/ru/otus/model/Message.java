@@ -36,8 +36,8 @@ public class Message {
         this.field9 = field9;
         this.field10 = field10;
         this.field11 = field11;
-        this.field12 = field12;
-        this.field13 = field13;
+        Message.field12 = field12;
+        Message.field13 = field13;
     }
 
 
