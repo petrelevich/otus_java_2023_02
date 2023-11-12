@@ -15,13 +15,9 @@ import ru.otus.jdbc.mapper.*;
 import javax.sql.DataSource;
 
 public class HomeWork {
-    //private static final String URL = "jdbc:postgresql://localhost:5430/demoDB";
-    //private static final String USER = "usr";
-    //private static final String PASSWORD = "pwd";
-    private static final String URL = "jdbc:postgresql://localhost:5432/otusTrain";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "161180";
-
+    private static final String URL = "jdbc:postgresql://localhost:5430/demoDB";
+    private static final String USER = "usr";
+    private static final String PASSWORD = "pwd";
     private static final Logger log = LoggerFactory.getLogger(HomeWork.class);
 
     public static void main(String[] args) throws NoSuchMethodException {
@@ -32,7 +28,7 @@ public class HomeWork {
         var dbExecutor = new DbExecutorImpl();
 
 // Работа с клиентом
-        EntityClassMetaData<Client> entityClassMetaDataClient= new EntityClassMetaDataImpl<Client>(Client.class); // = new EntityClassMetaDataImpl();
+        EntityClassMetaData<Client> entityClassMetaDataClient = new EntityClassMetaDataImpl<Client>(Client.class); // = new EntityClassMetaDataImpl();
         EntitySQLMetaData entitySQLMetaDataClient = new EntitySQLMetaDataImpl(entityClassMetaDataClient);
         EntityResultSetFactory<Client> f = new ClientResultSetFactory();
         var dataTemplateClient = new DataTemplateJdbc<Client>(dbExecutor, entitySQLMetaDataClient, f); //реализация DataTemplate, универсальная
