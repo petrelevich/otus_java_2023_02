@@ -1,3 +1,6 @@
+drop table if exists test;
+drop table if exists client;
+drop table if exists manager;
 create table test
 (
     id   int,
