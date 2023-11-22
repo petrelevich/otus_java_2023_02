@@ -14,6 +14,7 @@ public interface EntityClassMetaData<T> {
 
     //Поле Id должно определять по наличию аннотации Id
     //Аннотацию @Id надо сделать самостоятельно
+   @Id
     Field getIdField();
 
     List<Field> getAllFields();
