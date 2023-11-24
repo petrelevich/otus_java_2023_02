@@ -2,6 +2,7 @@ package ru.otus;
 
 import ru.otus.handler.ComplexProcessor;
 import ru.otus.listener.ListenerPrinterConsole;
+import ru.otus.listener.homework.HistoryListener;
 import ru.otus.model.Message;
 import ru.otus.processor.*;
 
@@ -33,8 +34,8 @@ public class HomeWork {
                 new ProcessorSwapFields());
 
         var complexProcessor = new ComplexProcessor(processors, System.out::println);
-        var listenerPrinter = new ListenerPrinterConsole();
-        complexProcessor.addListener(listenerPrinter);
+        var historylistner = new HistoryListener();
+        complexProcessor.addListener(historylistner);
 
         var message = new Message.Builder(1L)
                 .field1("field1")
@@ -49,6 +50,6 @@ public class HomeWork {
         var result = complexProcessor.handle(message);
         System.out.println("result:" + result);
 
-        complexProcessor.removeListener(listenerPrinter);
+        complexProcessor.removeListener(historylistner);
     }
 }
