@@ -1,5 +1,8 @@
 package ru.otus.model;
 
+
+import java.util.List;
+
 public class Message {
     private final long id;
     private final String field1;
@@ -79,10 +82,17 @@ public class Message {
         return field10;
     }
 
-    public String getField11() {return field11;}
+    public String getField11() {
+        return field11;
+    }
 
-    public String getField12() {return field12;}
-    public ObjectForMessage getField13() {return field13;}
+    public String getField12() {
+        return field12;
+    }
+
+    public ObjectForMessage getField13() {
+        return field13;
+    }
 
 
     @Override
@@ -210,14 +220,17 @@ public class Message {
             this.field10 = field10;
             return this;
         }
+
         public Builder field11(String field11) {
             this.field11 = field11;
             return this;
         }
+
         public Builder field12(String field12) {
             this.field12 = field12;
             return this;
         }
+
         public Builder field13(ObjectForMessage field13) {
             this.field13 = field13;
             return this;
@@ -225,6 +238,13 @@ public class Message {
 
         public Message build() {
             return new Message(id, field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13);
+        }
+
+        public Message copyOf(Message original) {
+            List<String> copyData = List.copyOf(original.field13.getData());
+            ObjectForMessage field13Copy = new ObjectForMessage();
+            field13Copy.setData(copyData);
+            return new Message(original.getId(), original.getField1(), original.getField2(), original.getField3(), original.getField4(), original.getField5(), original.getField6(), original.getField7(), original.getField8(), original.getField9(), original.getField10(), original.getField11(), original.getField12(), field13Copy);
         }
     }
 }

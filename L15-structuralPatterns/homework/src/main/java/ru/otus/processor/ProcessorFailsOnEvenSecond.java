@@ -2,7 +2,7 @@ package ru.otus.processor;
 
 import ru.otus.model.Message;
 
-public class ProcessorFailsOnEvenSecond implements Processor{
+public class ProcessorFailsOnEvenSecond implements Processor {
     private final int currentSecond;
 
     public ProcessorFailsOnEvenSecond(int currentSecond) {
@@ -11,7 +11,7 @@ public class ProcessorFailsOnEvenSecond implements Processor{
 
     @Override
     public Message process(Message message) {
-        if (currentSecond % 2 == 0){
+        if (currentSecond % 2 == 0) {
             throw new IllegalStateException("Second must be odd");
         }
         return message;

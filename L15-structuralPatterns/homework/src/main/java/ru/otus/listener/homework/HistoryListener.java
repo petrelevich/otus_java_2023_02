@@ -9,10 +9,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class HistoryListener implements Listener, HistoryReader {
-    private final Map<Long, Message> messageMap = new  HashMap<>();
+    private final Map<Long, Message> messageMap = new HashMap<>();
+
     @Override
     public void onUpdated(Message msg) {
-        messageMap.put(msg.getId(), msg.toBuilder().build());
+        messageMap.put(msg.toBuilder().copyOf(msg).getId(), msg.toBuilder().copyOf(msg));
     }
 
     @Override

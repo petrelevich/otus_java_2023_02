@@ -34,7 +34,6 @@ class HistoryListenerTest {
         historyListener.onUpdated(message);
         message.getField13().setData(new ArrayList<>()); //меняем исходное сообщение
         field13Data.clear(); //меняем исходный список
-
         //then
         var messageFromHistory = historyListener.findMessageById(id);
         assertThat(messageFromHistory).isPresent();
