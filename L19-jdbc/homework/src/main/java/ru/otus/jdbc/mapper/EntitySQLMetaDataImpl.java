@@ -9,21 +9,21 @@ public class EntitySQLMetaDataImpl implements EntitySQLMetaData {
 
     @Override
     public String getSelectAllSql() {
-        return null;
+        return getSelectAllSql();
     }
 
     @Override
     public String getSelectByIdSql() {
-        return null;
+        return getSelectByIdSql();
     }
 
     @Override
     public String getInsertSql() {
-        return null;
+        return  getInsertSql();
     }
 
     @Override
     public String getUpdateSql() {
-        return null;
+        return getUpdateSql();
     }
 }

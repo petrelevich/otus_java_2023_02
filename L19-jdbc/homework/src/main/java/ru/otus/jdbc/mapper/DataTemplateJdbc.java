@@ -7,9 +7,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Сохратяет объект в базу, читает объект из базы
- */
+
 public class DataTemplateJdbc<T> implements DataTemplate<T> {
 
     private final DbExecutor dbExecutor;

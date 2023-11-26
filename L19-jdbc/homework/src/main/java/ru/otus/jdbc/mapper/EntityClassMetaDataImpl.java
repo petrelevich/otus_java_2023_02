@@ -8,26 +8,26 @@ public class EntityClassMetaDataImpl implements EntityClassMetaData{
 
     @Override
     public String getName() {
-        return null;
+        return getName();
     }
 
     @Override
     public Constructor getConstructor() {
-        return null;
+        return getConstructor();
     }
 
     @Override
     public Field getIdField() {
-        return null;
+        return getIdField();
     }
 
     @Override
     public List<Field> getAllFields() {
-        return null;
+        return getAllFields();
     }
 
     @Override
     public List<Field> getFieldsWithoutId() {
-        return null;
+        return getFieldsWithoutId();
     }
 }
