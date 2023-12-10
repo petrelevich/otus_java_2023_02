@@ -9,7 +9,8 @@ public class ObjectForMessage {
         return data;
     }
 
-    public void setData(List<String> data) {
+    public ObjectForMessage setData(List<String> data) {
         this.data = data;
+        return null;
     }
 }
