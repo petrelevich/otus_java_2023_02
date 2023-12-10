@@ -21,25 +21,24 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
     public AppComponentsContainerImpl(Class<?> initialConfigClass) {
         try {
             processConfig(initialConfigClass);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
+
     @SuppressWarnings("unchecked")
-    public AppComponentsContainerImpl(String packageName)  {
+    public AppComponentsContainerImpl(String packageName) {
         Reflections reflections = new Reflections(packageName);
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(AppComponentsContainerConfig.class);
         var cl = classes.stream()
                 .map(m -> Pair.with(m, m.getAnnotation(AppComponentsContainerConfig.class)))
                 .sorted(Comparator.comparingInt(p -> p.getValue1().order()))
-                .map(p-> p.getValue0())
+                .map(p -> p.getValue0())
                 .collect(Collectors.toList());
-        for(var confClass: cl) {
+        for (var confClass : cl) {
             try {
                 processConfig(confClass);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         }
@@ -101,8 +100,8 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
                 .sorted(Comparator.comparingInt(p -> p.getValue1().order()))
                 .collect(Collectors.toList());
 
-        for(var item: toProcess) {
-            processMethod(configClass,item);
+        for (var item : toProcess) {
+            processMethod(configClass, item);
         }
     }
 
