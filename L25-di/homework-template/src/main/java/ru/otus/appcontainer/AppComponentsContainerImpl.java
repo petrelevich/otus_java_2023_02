@@ -17,10 +17,8 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
     //private final List<Object> appComponents = new ArrayList<>(); поиск класса переделал на canonical name. теперь это не надо
     private final Map<String, Object> appComponentsByName = new HashMap<>();
     private final Map<String, Object> appComponentsByCanonicalName = new HashMap<>();
-    private final Class<?> initialConfigClass;
 
     public AppComponentsContainerImpl(Class<?> initialConfigClass) {
-        this.initialConfigClass = initialConfigClass;
         try {
             processConfig(initialConfigClass);
         }
@@ -28,8 +26,27 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
             throw new RuntimeException(ex);
         }
     }
+    @SuppressWarnings("unchecked")
+    public AppComponentsContainerImpl(String packageName)  {
+        Reflections reflections = new Reflections(packageName);
+        Set<Class<?>> classes = reflections.getTypesAnnotatedWith(AppComponentsContainerConfig.class);
+        var cl = classes.stream()
+                .map(m -> Pair.with(m, m.getAnnotation(AppComponentsContainerConfig.class)))
+                .sorted(Comparator.comparingInt(p -> p.getValue1().order()))
+                .map(p-> p.getValue0())
+                .collect(Collectors.toList());
+        for(var confClass: cl) {
+            try {
+                processConfig(confClass);
+            }
+            catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
 
-    private Object getConfigObj() throws IllegalAccessException, InvocationTargetException, InstantiationException {
+    }
+
+    private Object getConfigObj(Class<?> initialConfigClass) throws IllegalAccessException, InvocationTargetException, InstantiationException {
         var ctor = initialConfigClass.getDeclaredConstructors()[0];
         if (ctor.getParameterTypes().length > 0) {
             throw new IllegalArgumentException(String.format("%s have haven't constructors without params!", initialConfigClass.getCanonicalName()));
@@ -47,7 +64,7 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
         }
     }
 
-    private void processMethod(Pair<Method, AppComponent> p) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+    private void processMethod(Class<?> configClass, Pair<Method, AppComponent> p) throws IllegalAccessException, InvocationTargetException, InstantiationException {
         var method = p.getValue0();
         if (appComponentsByName.containsKey(p.getValue1().name())) {
             throw new IllegalArgumentException(String.format("name %s is found in container!", p.getValue1().name()));
@@ -68,7 +85,7 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
                 throw new IllegalArgumentException(String.format("Canonical name %s not found in container!", objType));
             }
         }
-        Object obj = method.invoke(getConfigObj(), args);
+        Object obj = method.invoke(getConfigObj(configClass), args);
 
         appComponentsByName.put(p.getValue1().name(), obj);
         appComponentsByCanonicalName.put(method.getReturnType().getCanonicalName(), obj);
@@ -85,7 +102,7 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
                 .collect(Collectors.toList());
 
         for(var item: toProcess) {
-            processMethod(item);
+            processMethod(configClass,item);
         }
     }
 
