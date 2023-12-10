@@ -7,11 +7,14 @@ import ru.otus.core.repository.DataTemplateHibernate;
 import ru.otus.core.repository.HibernateUtils;
 import ru.otus.core.sessionmanager.TransactionManagerHibernate;
 import ru.otus.crm.dbmigrations.MigrationsExecutorFlyway;
+import ru.otus.crm.model.Address;
 import ru.otus.crm.model.Client;
+import ru.otus.crm.model.Phone;
 import ru.otus.crm.service.DbServiceClientImpl;
 
-public class DbServiceDemo {
+import java.util.List;
 
+public class DbServiceDemo {
     private static final Logger log = LoggerFactory.getLogger(DbServiceDemo.class);
 
     public static final String HIBERNATE_CFG_FILE = "hibernate.cfg.xml";
@@ -25,21 +28,21 @@ public class DbServiceDemo {
 
         new MigrationsExecutorFlyway(dbUrl, dbUserName, dbPassword).executeMigrations();
 
-        var sessionFactory = HibernateUtils.buildSessionFactory(configuration, Client.class);
+        var sessionFactory = HibernateUtils.buildSessionFactory(configuration, Client.class, Address.class, Phone.class);
 
         var transactionManager = new TransactionManagerHibernate(sessionFactory);
 ///
         var clientTemplate = new DataTemplateHibernate<>(Client.class);
 ///
         var dbServiceClient = new DbServiceClientImpl(transactionManager, clientTemplate);
-        dbServiceClient.saveClient(new Client("dbServiceFirst"));
+        dbServiceClient.saveClient(new Client("dbServiceFirst", new Address("Pushkin st"), List.of(new Phone("88005553535"))));
 
-        var clientSecond = dbServiceClient.saveClient(new Client("dbServiceSecond"));
+        var clientSecond = dbServiceClient.saveClient(new Client("dbServiceSecond", new Address("Lenina st"), List.of(new Phone("24251251252"))));
         var clientSecondSelected = dbServiceClient.getClient(clientSecond.getId())
                 .orElseThrow(() -> new RuntimeException("Client not found, id:" + clientSecond.getId()));
         log.info("clientSecondSelected:{}", clientSecondSelected);
 ///
-        dbServiceClient.saveClient(new Client(clientSecondSelected.getId(), "dbServiceSecondUpdated"));
+        dbServiceClient.saveClient(new Client(clientSecondSelected.getId(), "dbServiceSecondUpdated", new Address("ABC st"), List.of(new Phone("88005554535"))));
         var clientUpdated = dbServiceClient.getClient(clientSecondSelected.getId())
                 .orElseThrow(() -> new RuntimeException("Client not found, id:" + clientSecondSelected.getId()));
         log.info("clientUpdated:{}", clientUpdated);

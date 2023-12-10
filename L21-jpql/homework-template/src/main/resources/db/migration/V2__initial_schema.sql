@@ -16,3 +16,15 @@ create table client
     id   bigint not null primary key,
     name varchar(50)
 );
+
+create table address
+(
+    id   bigserial not null primary key,
+    address varchar(50)
+);
+
+create table phones
+(
+    id   bigserial not null primary key,
+    phone varchar(50)
+);
