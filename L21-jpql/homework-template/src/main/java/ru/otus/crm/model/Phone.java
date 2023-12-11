@@ -29,4 +29,13 @@ public class Phone {
         this.id=id;
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "Phone{" +
+                "id=" + id +
+                ", phone='" + phone + '\'' +
+                ", client=" + client.getName() +
+                '}';
+    }
 }
