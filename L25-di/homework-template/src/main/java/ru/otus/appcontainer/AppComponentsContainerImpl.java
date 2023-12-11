@@ -9,7 +9,6 @@ import ru.otus.appcontainer.api.AppComponentsContainerConfig;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class AppComponentsContainerImpl implements AppComponentsContainer {
@@ -33,8 +32,8 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
         var cl = classes.stream()
                 .map(m -> Pair.with(m, m.getAnnotation(AppComponentsContainerConfig.class)))
                 .sorted(Comparator.comparingInt(p -> p.getValue1().order()))
-                .map(p -> p.getValue0())
-                .collect(Collectors.toList());
+                .map(Pair::getValue0)
+                .toList();
         for (var confClass : cl) {
             try {
                 processConfig(confClass);
@@ -98,7 +97,7 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
                 .map(m -> Pair.with(m, m.getAnnotation(AppComponent.class)))
                 .filter(p -> p.getValue1() != null)
                 .sorted(Comparator.comparingInt(p -> p.getValue1().order()))
-                .collect(Collectors.toList());
+                .toList();
 
         for (var item : toProcess) {
             processMethod(configClass, item);
