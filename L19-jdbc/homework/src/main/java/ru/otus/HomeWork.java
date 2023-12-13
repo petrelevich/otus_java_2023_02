@@ -27,7 +27,7 @@ public class HomeWork {
         var transactionRunner = new TransactionRunnerJdbc(dataSource);
         var dbExecutor = new DbExecutorImpl();
 
-        EntityClassMetaData<Client> entityClassMetaDataClient = new EntityClassMetaDataImpl();
+        EntityClassMetaData<Client> entityClassMetaDataClient = new EntityClassMetaDataImpl<>(Client.class);
         EntitySQLMetaData<Client> entitySQLMetaDataClient = new EntitySQLMetaDataImpl<>(entityClassMetaDataClient);
         var dataTemplateClient = new DataTemplateJdbc<>(dbExecutor, entitySQLMetaDataClient); //реализация DataTemplate, универсальная
 
@@ -39,7 +39,7 @@ public class HomeWork {
                 .orElseThrow(() -> new RuntimeException("Client not found, id:" + clientSecond.getId()));
         log.info("clientSecondSelected:{}", clientSecondSelected);
 
-        EntityClassMetaData<Manager> entityClassMetaDataManager = new EntityClassMetaDataImpl();
+        EntityClassMetaData<Manager> entityClassMetaDataManager = new EntityClassMetaDataImpl<>(Manager.class);
         EntitySQLMetaData<Manager> entitySQLMetaDataManager = new EntitySQLMetaDataImpl<>(entityClassMetaDataManager);
         var dataTemplateManager = new DataTemplateJdbc<>(dbExecutor, entitySQLMetaDataManager);
 
