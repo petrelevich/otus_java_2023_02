@@ -9,11 +9,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-@RequiredArgsConstructor
+//@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+//@RequiredArgsConstructor
 public class EntitySQLMetaDataImpl<T> implements EntitySQLMetaData<T> {
 
     EntityClassMetaData<T> entityClassMetaData;
+
+    public EntitySQLMetaDataImpl(EntityClassMetaData<T> entityClassMetaData) {
+        this.entityClassMetaData = entityClassMetaData;
+    }
 
     @Override
     public EntityClassMetaData<T> getEntityClassMetaData() {
