@@ -1,12 +1,12 @@
 package ru.otus.jdbc.mapper;
 
-import java.beans.FeatureDescriptor;
+import ru.otus.crm.model.Id;
+
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
