@@ -13,7 +13,7 @@ import ru.otus.core.sessionmanager.TransactionRunnerJdbc;
 import javax.sql.DataSource;
 
 public class DbServiceDemo {
-    private static final String URL = "jdbc:postgresql://localhost:5430/demoDB";
+    private static final String URL = "jdbc:postgresql://localhost:5432/demoDB";
     private static final String USER = "usr";
     private static final String PASSWORD = "pwd";
 
