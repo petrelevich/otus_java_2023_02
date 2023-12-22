@@ -1,10 +1,11 @@
-package ru.otus.cachehw;
+package ru.otus.crm.cachehw;
 
 
 import java.lang.ref.SoftReference;
 import java.util.*;
 
 public class MyCache<K, V> implements HwCache<K, V> {
+//Надо реализовать эти методы
     private final int capacity;
     private final Map<K, SoftReference<V>> map;
     private List<HwListener<K,V>> listeners;
@@ -14,7 +15,6 @@ public class MyCache<K, V> implements HwCache<K, V> {
         map = new WeakHashMap<>(capacity);
         listeners = new ArrayList<>();
     }
-
 
     public boolean exists(K key) {
         SoftReference <V> softValue = map.get(key);
