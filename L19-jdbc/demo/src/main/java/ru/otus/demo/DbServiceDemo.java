@@ -13,9 +13,9 @@ import ru.otus.core.sessionmanager.TransactionRunnerJdbc;
 import javax.sql.DataSource;
 
 public class DbServiceDemo {
-    private static final String URL = "jdbc:postgresql://localhost:5432/demoDB";
-    private static final String USER = "usr";
-    private static final String PASSWORD = "pwd";
+    private static final String URL = "jdbc:postgresql://localhost:5430/demoDB";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "1234";
 
     private static final Logger log = LoggerFactory.getLogger(DbServiceDemo.class);
 
