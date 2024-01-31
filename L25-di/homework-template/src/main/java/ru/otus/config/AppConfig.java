@@ -8,7 +8,7 @@ import ru.otus.services.*;
 public class AppConfig {
 
     @AppComponent(order = 0, name = "equationPreparer")
-    public EquationPreparer equationPreparer(){
+    public EquationPreparer equationPreparer() {
         return new EquationPreparerImpl();
     }
 
