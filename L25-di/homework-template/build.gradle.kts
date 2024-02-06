@@ -1,4 +1,4 @@
-dependencies {
+    dependencies {
     implementation("org.reflections:reflections")
 
     testImplementation("org.junit.jupiter:junit-jupiter-engine")
