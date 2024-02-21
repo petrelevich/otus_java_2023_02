@@ -1,0 +1,25 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="SingleUnit" transaction-type="RESOURCE_LOCAL">
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5430/otus-db" />
+            <property name="javax.persistence.jdbc.user" value="user" />
+            <property name="javax.persistence.jdbc.password" value="password" />
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <!--hibernate.hbm2ddl.auto = create - создавать схему заново, удаляя имеющуюся и все данные-->
+            <!--hibernate.hbm2ddl.auto = update - обновить схему при наличии несоответстий с БД и сохранить данные-->
+            <!--hibernate.hbm2ddl.auto = create-drop - аналогично create + удалить схему после -->
+            <!--hibernate.hbm2ddl.auto = validate - провалидировать схему и выбросить исключение при несоответствии-->
+            <!--hibernate.hbm2ddl.auto = none - не производить никаких изменений-->
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+        </properties>
+    </persistence-unit>
+</persistence>

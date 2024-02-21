@@ -15,4 +15,19 @@ create table client
 (
     id   bigint not null primary key,
     name varchar(50)
+
+);
+
+create table phone
+(
+    id   UUID primary key not null,
+    number varchar(50),
+    client_id bigint references client (id)
+);
+
+create table address
+(
+    id   UUID primary key not null,
+    street varchar(50),
+    client_id bigint references client (id)
 );
