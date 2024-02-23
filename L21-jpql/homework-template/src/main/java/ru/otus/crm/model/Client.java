@@ -57,7 +57,7 @@ public class Client implements Cloneable {
 
     @Override
     public Client clone() {
-        Client clientClone = new Client(this.id, this.name, this.address, new ArrayList<Phone>(this.phones));
+        Client clientClone = new Client(this.id, this.name, this.address, new ArrayList<>(this.phones));
         for (Phone phone : clientClone.getPhones()){
             phone.setClient(clientClone);
         }
