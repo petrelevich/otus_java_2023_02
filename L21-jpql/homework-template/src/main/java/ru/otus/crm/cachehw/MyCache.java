@@ -26,13 +26,17 @@ public class MyCache<K, V> implements HwCache<K, V> {
             }
             map.put(key, new WeakReference<>(value));
         }
-        notifyListeners(key, value, "put");
+        notifyListeners(key, map.get(key).get(), "put");
     }
 
     @Override
     public void remove(K key) {
         map.remove(key);
-        notifyListeners(key, map.get(key).get(), "remove");
+        try {
+            notifyListeners(key, map.get(key).get(), "remove");
+        }catch (NullPointerException exception){
+            notifyListeners(key, null, "remove");
+        }
     }
 
     private boolean exists(K key){
