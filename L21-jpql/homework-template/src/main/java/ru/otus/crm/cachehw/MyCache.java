@@ -6,7 +6,7 @@ import java.util.*;
 
 public class MyCache<K, V> implements HwCache<K, V> {
     private final Map<K, WeakReference<V>> map;
-    private List<HwListener<K,V>> hwListeners;
+    private final List<HwListener<K, V>> hwListeners;
     private final int capacity;
 
     public MyCache(int capacity) {
@@ -18,10 +18,10 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     @Override
     public void put(K key, V value) {
-        if (exists(key)){
+        if (exists(key)) {
             map.put(key, new WeakReference<>(value));
         } else {
-            if (map.size() == capacity){
+            if (map.size() == capacity) {
                 map.remove(map.keySet().iterator().next());
             }
             map.put(key, new WeakReference<>(value));
@@ -34,24 +34,24 @@ public class MyCache<K, V> implements HwCache<K, V> {
         map.remove(key);
         try {
             notifyListeners(key, map.get(key).get(), "remove");
-        }catch (NullPointerException exception){
+        } catch (NullPointerException exception) {
             notifyListeners(key, null, "remove");
         }
     }
 
-    private boolean exists(K key){
+    public boolean exists(K key) {
         WeakReference<V> weakValue = map.get(key);
-        return weakValue != null && weakValue.get()!=null;
+        return weakValue != null && weakValue.get() != null;
     }
 
     @Override
     public V get(K key) {
         WeakReference<V> weakValue = map.remove(key);
-         V value = weakValue == null ? null : weakValue.get();
-        if (value == null){
+        V value = weakValue == null ? null : weakValue.get();
+        if (value == null) {
             throw new NoSuchElementException();
         }
-        map.put (key, weakValue);
+        map.put(key, weakValue);
         return value;
     }
 
@@ -66,7 +66,7 @@ public class MyCache<K, V> implements HwCache<K, V> {
     }
 
     public void notifyListeners(K key, V value, String action) {
-        for(HwListener<K,V> hwListener : hwListeners){
+        for (HwListener<K, V> hwListener : hwListeners) {
             hwListener.notify(key, value, action);
         }
     }

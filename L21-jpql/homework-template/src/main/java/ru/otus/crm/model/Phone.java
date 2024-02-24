@@ -26,6 +26,7 @@ public class Phone {
     public Phone(String number) {
         this.number = number;
     }
+
     public Phone(UUID id, String number) {
         this.id = id;
         this.number = number;

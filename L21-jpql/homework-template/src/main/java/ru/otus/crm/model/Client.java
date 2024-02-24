@@ -35,22 +35,24 @@ public class Client implements Cloneable {
     public Client(String name) {
         this.name = name;
     }
+
     public Client(Long id, String name, Address address, List<Phone> phones) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phones = phones;
         address.setClient(this);
-        for (Phone p : phones){
+        for (Phone p : phones) {
             p.setClient(this);
         }
     }
+
     public Client(String name, Address address, List<Phone> phones) {
         this.name = name;
         this.address = address;
         this.phones = phones;
         address.setClient(this);
-        for (Phone p : phones){
+        for (Phone p : phones) {
             p.setClient(this);
         }
     }
@@ -58,7 +60,7 @@ public class Client implements Cloneable {
     @Override
     public Client clone() {
         Client clientClone = new Client(this.id, this.name, this.address, new ArrayList<>(this.phones));
-        for (Phone phone : clientClone.getPhones()){
+        for (Phone phone : clientClone.getPhones()) {
             phone.setClient(clientClone);
         }
         return clientClone;
