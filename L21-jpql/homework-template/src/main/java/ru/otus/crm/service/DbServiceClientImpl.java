@@ -20,6 +20,7 @@ public class DbServiceClientImpl implements DBServiceClient {
         this.clientDataTemplate = clientDataTemplate;
     }
 
+
     @Override
     public Client saveClient(Client client) {
         return transactionManager.doInTransaction(session -> {
@@ -50,6 +51,6 @@ public class DbServiceClientImpl implements DBServiceClient {
             var clientList = clientDataTemplate.findAll(session);
             log.info("clientList:{}", clientList);
             return clientList;
-       });
+        });
     }
 }

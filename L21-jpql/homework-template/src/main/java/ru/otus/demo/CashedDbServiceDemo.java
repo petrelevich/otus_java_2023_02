@@ -10,14 +10,12 @@ import ru.otus.crm.dbmigrations.MigrationsExecutorFlyway;
 import ru.otus.crm.model.Address;
 import ru.otus.crm.model.Client;
 import ru.otus.crm.model.Phone;
-import ru.otus.crm.service.DbServiceClientImpl;
+import ru.otus.crm.service.CashedDbServiceClientImpl;
 
 import java.util.List;
-import java.util.Set;
 
-public class DbServiceDemo {
-
-    private static final Logger log = LoggerFactory.getLogger(DbServiceDemo.class);
+public class CashedDbServiceDemo {
+    private static final Logger log = LoggerFactory.getLogger(CashedDbServiceDemo.class);
 
     public static final String HIBERNATE_CFG_FILE = "hibernate.cfg.xml";
 
@@ -36,20 +34,20 @@ public class DbServiceDemo {
 ///
         var clientTemplate = new DataTemplateHibernate<>(Client.class);
 ///
-        var dbServiceClient = new DbServiceClientImpl(transactionManager, clientTemplate);
-        dbServiceClient.saveClient(new Client("dbServiceFirst", new Address("Butlerova 1"), List.of(new Phone("39409504340"))));
+        var cashedDbServiceClient = new CashedDbServiceClientImpl(transactionManager, clientTemplate);
+        cashedDbServiceClient.saveClient(new Client("dbServiceFirst", new Address("Butlerova 1"), List.of(new Phone("39409504340"))));
 
-        var clientSecond = dbServiceClient.saveClient(new Client("dbServiceSecond", new Address("Butlerova 1"), List.of(new Phone("39409504340"))));
-        var clientSecondSelected = dbServiceClient.getClient(clientSecond.getId())
+        var clientSecond = cashedDbServiceClient.saveClient(new Client("dbServiceSecond", new Address("Butlerova 1"), List.of(new Phone("39409504340"))));
+        var clientSecondSelected = cashedDbServiceClient.getClient(clientSecond.getId())
                 .orElseThrow(() -> new RuntimeException("Client not found, id:" + clientSecond.getId()));
         log.info("clientSecondSelected:{}", clientSecondSelected);
 ///
-        dbServiceClient.saveClient(new Client(clientSecondSelected.getId(), "dbServiceSecondUpdated", new Address("Butlerova 1"), List.of(new Phone("39409504340"))));
-        var clientUpdated = dbServiceClient.getClient(clientSecondSelected.getId())
+        cashedDbServiceClient.saveClient(new Client(clientSecondSelected.getId(), "dbServiceSecondUpdated", new Address("Butlerova 1"), List.of(new Phone("39409504340"))));
+        var clientUpdated = cashedDbServiceClient.getClient(clientSecondSelected.getId())
                 .orElseThrow(() -> new RuntimeException("Client not found, id:" + clientSecondSelected.getId()));
         log.info("clientUpdated:{}", clientUpdated);
 
         log.info("All clients");
-        dbServiceClient.findAll().forEach(client -> log.info("client:{}", client));
+        cashedDbServiceClient.findAll().forEach(client -> log.info("client:{}", client));
     }
 }
